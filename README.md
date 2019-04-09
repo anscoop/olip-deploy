@@ -6,6 +6,7 @@ This set of roles and tasks use belena-engine (Moby-based container engine) and 
 ## Initialization
 
 ### From the server you want to configure
+
 ```
 curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh | bash -s -- --name my_platform_name --url my-platform-name.fr --descriptor /ipfs/QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA
 ```
@@ -44,4 +45,3 @@ Open inbound port :
 * `22` for SSH
 * `4001` for IPFS swarm
 * `5002` for OLIP API
-*
