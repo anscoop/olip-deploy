@@ -1,0 +1,7 @@
+localhost ansible_connection=local
+
+olip ansible_ssh_host=ec2-35-180-114-172.eu-west-3.compute.amazonaws.com  ansible_user=admin ansible_ssh_private_key_file=~/.ssh/florian-aws-bsf.pem
+#cap ansible_host=127.0.0.1 ansible_port=2024 ansible_user=root
+
+[aws]
+olip

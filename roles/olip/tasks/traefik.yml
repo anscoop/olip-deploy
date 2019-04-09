@@ -1,0 +1,15 @@
+---
+- name: Pull traefik from repository and start it
+  docker_container:
+    docker_host: unix://var/run/balena-engine.sock
+    name: traefik
+    image: bibliosansfrontieres/traefik-i386
+    published_ports:
+      - 8181:8080
+      - 80:80
+    restart_policy: always
+    state: started
+    pull: yes
+    volumes:
+      - "{{ olip_storage }}/config-files/traefik/traefik.toml:/etc/traefik/traefik.toml"
+      - /var/run/balena-engine.sock:/var/run/docker.sock

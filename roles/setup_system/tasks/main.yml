@@ -1,0 +1,73 @@
+---
+- debug:
+    msg: "Start OLIP install {{ ansible_date_time['date'] }} - {{ ansible_date_time['time'] }} - IPFS Hash file descriptor: {{ olip_file_descriptor }}"
+
+- name: Fix broken package
+  shell: dpkg --configure -a
+
+- name: Install required package
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+  vars:
+    packages:
+    - git
+    - lsb-release
+    - vim
+    - locate
+    - unzip
+    - bash-completion
+    - hdparm
+    - ncurses-term
+    - libffi-dev
+    - libssl-dev
+    - tree
+    - screen
+    - iftop
+    - tmux
+    - mtr-tiny
+    - libwww-perl
+    - httpie
+    - lshw
+    - hwinfo
+    - elinks
+    - mosh
+    - curl
+    - apt-transport-https
+    - iotop
+    - htop
+    - anacron
+    - rsync
+    - avahi-daemon
+    - libnss-mdns
+    - avahi-utils
+    - software-properties-common
+    - ca-certificates
+    - sqlite3
+    - cifs-utils
+    - python-pip
+
+- name: Upgrade all safe packages
+  apt:
+    upgrade: safe
+
+- name: Ensure locale en_US.UTF-8 locale is present
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
+
+- block:
+  - name: Set a server name with hostnamectl
+    shell: hostnamectl set-hostname {{ server_name }}
+
+  rescue:
+  - name: Set a server name manually
+    shell: echo {{ server_name }} > /etc/hostname
+
+  always:
+  - name: reload ansible_hostname
+    setup: filter=ansible_hostname
+
+- include: ansible.yml

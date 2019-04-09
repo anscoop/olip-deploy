@@ -1,0 +1,29 @@
+---
+- name: Create a folder for configuration file
+  file:
+    path: "{{ olip_storage }}/{{item}}"
+    recurse: yes
+    state: directory
+  with_items:
+    - config-files/traefik
+    - olip_bdd
+    - olip_data_app
+
+- name: Set permission data_dir for containers
+  shell: umask a+rw && mkdir -p "{{ olip_storage }}/olip_data_app" && chmod -R 777 "{{ olip_storage }}/olip_data_app" && umask 0022
+
+- name: Copy configuration files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'traefik.toml', dest: '{{ olip_storage }}/config-files/traefik/traefik.toml' }
+    #- { src: '45-pull-containers', dest: '/etc/hotplug.d/iface/45-update-containers'}
+
+- include: traefik.yml
+  tags:
+    - update_container
+
+- include: olip.yml
+  tags:
+    - update_container

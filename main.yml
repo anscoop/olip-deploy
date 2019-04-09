@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - setup_system
+    - balena-engine
+    - { role: 'olip', tags: 'olip' }

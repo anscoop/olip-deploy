@@ -1,0 +1,44 @@
+---
+- name: Add Ubuntu PPA for Ansible
+  apt_repository:
+    repo: ppa:ansible/ansible
+  when: ansible_os_family == "Ubuntu"
+
+- name: Add Debian PPA for Ansible
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
+  when: ansible_os_family == "Debian"
+
+- name: Import key
+  shell: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+  when: ansible_os_family == "Debian"
+
+- name: Install ansible package
+  apt:
+    name: ansible
+    state: latest
+    update_cache: yes
+
+- name: Create local directory to work from
+  file:
+    path: /var/lib/ansible/local
+    state: directory
+    owner: root
+    group: root
+    mode: 0751
+
+- name: Create ansible hosts directory to work from
+  file:
+    path: /etc/ansible/
+    state: directory
+    owner: root
+    group: root
+    mode: 0751
+
+- name: Copy ansible inventory file to client
+  copy:
+    src: hosts
+    dest: /etc/ansible/hosts
+    owner: root
+    group: root
+    mode: 0644

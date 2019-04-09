@@ -1,0 +1,77 @@
+{
+  "applications":[
+    {
+      "bundle": "hugo.app",
+      "name": "Mediacenter",
+      "description": "Mediacenter for OLIP",
+      "version": "0.0.4",
+      "picture": "",
+      "containers": [
+        {
+          "image": "ciqf4lgmhaipkkb3tex7e56meaj6rumura4i5pymycjrlqccqd6ka7q/bibliosansfrontieres/hugo-olip-i386:latest",
+          "name": "hugo",
+          "expose": 3000
+        }
+      ],
+      "contents": [
+        {
+          "content_id": "stitching.fr",
+          "name": "Stitching",
+          "download_path": "/ipfs/QmS8nyPD6QNtuMzfjiRkVuy28Fd6uCir2GXTWFCvyATCD2",
+          "destination_path": "stitching-fr",
+          "version": "0.0.14",
+          "description": "How to make DIY stitching",
+          "endpoint": {
+              "container": "hugo",
+              "name": "Stitching",
+              "url": "packages"
+          }
+        }
+      ],
+      "search": {
+        "container": "hugo",
+        "opensearch_url": "/descriptor.xml"
+      }
+    },
+    {
+      "bundle": "kolibri.app",
+      "name": "Kolibri software",
+      "description": "This is the Kolibri software",
+      "version": "0.0.4",
+      "picture": "",
+      "containers": [
+        {
+          "image": "ciqpzyipbruwwzjwwzjugyifml226lw2hxicjimecmvi3gyd62ax3wq/bibliosansfrontieres/kolibri-olip-i386:latest",
+          "name": "kolibri",
+          "expose": 8080
+        }
+      ]
+    },
+    {
+      "bundle": "kiwix.app",
+      "name": "Kiwix software",
+      "description": "This is the Kiwix software",
+      "version": "0.0.5",
+      "picture": "",
+      "containers": [
+        {
+          "image": "ciqhewjalkzwnemp4kfrlfxsw7fhi6ttphtykqjxfwuyfiass4m3gdi/bibliosansfrontieres/kiwix-olip-i386:latest",
+          "name": "kiwix",
+          "expose": 8080
+        }
+      ],
+      "contents": [
+        {
+          "content_id": "wikipedia.it",
+          "name": "Wikipedia it",
+          "download_path": "/ipfs/QmNw2FvHqKwX5KXKsJPfmuimUByEYJEGDnvnpAhYtVhYRy",
+          "destination_path": "QmNw2FvHqKwX5KXKsJPfmuimUByEYJEGDnvnpAhYtVhYRy/wiktionary_it_all_nopic_2018-07.zim",
+          "version": "0.0.1",
+          "description": "Wikipedia in IT language"
+        }
+      ]
+    }
+  ],
+  "terms": ["education", "health", "school", "stitching"]
+
+}

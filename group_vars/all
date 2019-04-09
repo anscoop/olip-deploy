@@ -1,0 +1,9 @@
+---
+server_name: "{{ end_user_server_name | default('olip_server') }}"
+domain_name: "{{ end_user_domain_name | default('ideascube.org') }}"
+olip_file_descriptor: "{{ end_user_olip_file_descriptor | default(omit) }}"
+
+ipfs_gateway_port: 8080
+ipfs_api_port: 5001
+ipfs_swarm_port: 4001
+ipfs_docker_registry_port: 6500

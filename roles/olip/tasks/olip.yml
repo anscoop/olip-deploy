@@ -1,0 +1,68 @@
+---
+- name: Create core network
+  docker_network:
+    docker_host: unix://var/run/balena-engine.sock
+    name: olipcore
+    driver_options:
+      com.docker.network.bridge.name: brolipcore
+    ipam_options:
+      subnet: "{{olip_core_network.subnet}}"
+      gateway: "{{olip_core_network.gateway}}"
+
+- name: Install docker registry
+  docker_container:
+    docker_host: unix://var/run/balena-engine.sock
+    name: ipfs-registry
+    pull: "{{olip_ipfs_registry_version == 'latest'}}"
+    image: "{{olip_docker_registry_repository}}:{{ olip_ipfs_registry_version }}"
+    restart_policy: always
+    ports:
+    - "{{ ipfs_docker_registry_port }}:5000"
+    env:
+      IPFS_GATEWAY: "http://{{ olip_core_network.gateway }}:{{ olip_ipfs_gw_port }}"
+    networks:
+      - name: olipcore
+
+- name: Install API
+  docker_container:
+    docker_host: unix://var/run/balena-engine.sock
+    name: olip-api
+    image: "{{olip_api_repository}}:{{ olip_api_version }}"
+    restart_policy: always
+    pull: "{{olip_api_version == 'latest'}}"
+    labels: "traefik.frontend.rule=Host:{{olip_api_base_url}}"
+    published_ports:
+      - "{{ olip_api_port }}:5002"
+    networks:
+      - name: olipcore
+    volumes:
+      - "{{ olip_storage }}/olip_bdd/:/data"
+      - /var/run/balena-engine.sock:/var/run/balena-engine.sock
+    env:
+      DOCKER_HOST: "unix://var/run/balena-engine.sock"
+      HOST_DATA_DIR: "{{ olip_storage }}/olip_data_app"
+      SQLALCHEMY_DATABASE_URI: sqlite:////data/app.db
+      IPFS_GATEWAY_HOST: "{{ olip_core_network.gateway }}"
+      IPFS_GATEWAY_PORT: "{{ olip_ipfs_api_port }}"
+      DOCKER_REGISTRY_HOST: "{{ olip_core_network.gateway }}:{{ ipfs_docker_registry_port }}"
+      API_BASE_URL: "http://{{ olip_api_base_url }}:{{ olip_api_port }}"
+      APPLICATION_ROOT: "http://{{ olip_external_base_url }}"
+      INTERNAL_HOST_BASE_URL: "{{olip_internal_host_base_url | default(omit)}}"
+      BOX_REPOSITORY_IPN: "/ipfs/{{ olip_file_descriptor }}"
+      OAUTH2_ALWAYS_ACCEPT_REDIRECT_URI: True
+      OAUTH2_DEV_MODE: True
+
+- name: Install Dashboard
+  docker_container:
+    docker_host: unix://var/run/balena-engine.sock
+    name: olip-dashboard
+    image: "{{olip_dashboard_repository}}:{{ olip_dashboard_version }}"
+    restart_policy: always
+    pull: "{{olip_dashboard_version == 'latest'}}"
+    labels: "traefik.frontend.rule=Host:{{olip_external_base_url}}"
+    published_ports:
+    - "{{ olip_dashboard_port }}:80"
+    networks:
+      - name: olipcore
+    env:
+      API_URL: "http://{{ olip_api_base_url }}:{{ olip_api_port }}"

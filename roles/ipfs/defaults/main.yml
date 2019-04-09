@@ -1,0 +1,22 @@
+ipfs_storage: /root/.ipfs
+ipfs_version: 0.4.19
+
+ipfs_schedule_ipns_publish: []
+ipfs_pin_content: [
+QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+]
+ipfs_announce: "/ip4/{{ ipify_public_ip }}/tcp/{{ipfs_swarm_port}}"
+
+ipfs_import_keys:
+  - { src: "ipfs_keys/bsf-test-retrieve-file", name: bsf-test-retrieve-file }
+
+ipfs_config:
+  - { key: Addresses.API, value: "/ip4/0.0.0.0/tcp/{{ipfs_api_port}}" }
+  - { key: Addresses.Gateway, value: "/ip4/0.0.0.0/tcp/{{ipfs_gateway_port}}" }
+  - { key: Addresses.Swarm, value: "\"[\\\"/ip4/0.0.0.0/tcp/{{ ipfs_swarm_port }}\\\",\\\"/ip6/::/tcp/{{ ipfs_swarm_port }}\\\"]\"", json: true }
+  - { key: Addresses.Announce, value: "\"[\\\"{{ ipfs_announce }}\\\"]\"", json: true }
+  - { key: Discovery.MDNS.Enabled, value: "true", json: true }
+  - { key: Mounts.FuseAllowOther, value: "true", json: true }
+  - { key: Swarm.ConnMgr.HighWater, value: "20", json: true }
+  - { key: Swarm.ConnMgr.LowWater, value: "10", json: true }
+  #- { key: Bootstrap, value: "\"[\\\"/ip4/51.15.137.212/tcp/4001/ipfs/QmcbT7oEDPPuzD2vGkQqkpj9F4eDtn2rT1YZJ8ypapURcn\\\"]\"", json: true }
