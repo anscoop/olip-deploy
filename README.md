@@ -44,7 +44,8 @@ added QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA descriptor.json
 
 You can then pass this IPFS Hash to the command line
 
-### With cURL
+
+### With cURL
 
 ```
 curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh | bash -s -- --name my_platform_name --url my-platform-name.fr --descriptor /ipfs/QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA
@@ -56,6 +57,10 @@ curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh |
 ansible-playbook -i hosts -l my_server -u root main.yml --extra-vars "end_user_server_name=my_platform_name end_user_domain_name=my-platform-name.fr end_user_olip_file_descriptor=QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA"
 ```
 
+You can add 2 variables to `--extra-vars` to specify OLIP and IPFS data storage, useful if you use an external hard drive to store the data
+
+* `ipfs_storage=/media/hdd/.ipfs`
+* `olip_storage=/media/hdd/`
 
 ## Usage
 
