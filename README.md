@@ -1,11 +1,50 @@
 # OLIP deploy
 
-This set of roles and tasks use belena-engine (Moby-based container engine) and pull Docker images to OLIP platform
+OLIP is a platform able to handle WebApp based on container and pull content from IPFS network
 
+![](screenshot.png)
+
+This Ansible playbook use a set of roles to deploy OLIP platform.
+
+OLIP uses an IPFS-backed Docker Registry to pull image from. Each images are then handled by OLIP to start containers from (webapp). Each webapp is able to pull content from IPFS network as well.
 
 ## Initialization
 
-### From the server you want to configure
+### Descriptor file
+
+This file specify what webapp to intall and what content to use. Docker images and content are stored on [IPFS](http://ipfs.io/), [see a short video about IPFS](https://www.youtube.com/watch?v=5Uj6uR3fp-U)
+The file [descriptor.json](descriptor.json) must be published from an IPFS node in order for OLIP to pull this file and show you what container and content is available.
+
+To speed up link between node you may want to connect them directly through the swarm
+
+**Node A**
+
+```
+$ ipfs id
+/ip4/123.123.123.123/tcp/4001/ipfs/QmasuyJZNTGLEk5PbLE4564678yybPJU235Y1Giz9i9tPwP
+```
+
+In this array of multiaddrs, get the line with the public address of the node. Node behind a NAT are difficult to reach out
+
+**Node B**
+
+```
+$ ipfs swarm connect /ip4/123.123.123.123/tcp/4001/ipfs/QmasuyJZNTGLEk5PbLE4564678yybPJU235Y1Giz9i9tPwP
+connect QmasuyJZNTGLEk5PbLE4564678yybPJU235Y1Giz9i9tPwP success
+```
+
+This way IPFS will be faster at discovering content
+
+#### Publish the descriptor file
+
+```
+$ ipfs add descriptor.json
+added QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA descriptor.json
+```
+
+You can then pass this IPFS Hash to the command line
+
+### With cURL
 
 ```
 curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh | bash -s -- --name my_platform_name --url my-platform-name.fr --descriptor /ipfs/QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA
@@ -16,6 +55,7 @@ curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh |
 ```
 ansible-playbook -i hosts -l my_server -u root main.yml --extra-vars "end_user_server_name=my_platform_name end_user_domain_name=my-platform-name.fr end_user_olip_file_descriptor=QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA"
 ```
+
 
 ## Usage
 
@@ -31,7 +71,7 @@ http://olip.api.my-platform-name.fr:5002/applications/?repository_update=true
 http://olip.my-platform-name.fr
 ```
 
-### Checkout the API
+### API
 
 ```
 http://api.olip.my-platform-name.fr:5002
