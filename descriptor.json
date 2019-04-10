@@ -68,6 +68,22 @@
           "destination_path": "QmNw2FvHqKwX5KXKsJPfmuimUByEYJEGDnvnpAhYtVhYRy/wiktionary_it_all_nopic_2018-07.zim",
           "version": "0.0.1",
           "description": "Wikipedia in IT language"
+        },
+        {
+          "content_id": "wikipedia.de",
+          "name": "Wikipedia de",
+          "download_path": "/ipfs/QmPVScMpahjVBqDfF1Fy4E79FPuR7DoUBeJhibrw6226SG",
+          "destination_path": "QmPVScMpahjVBqDfF1Fy4E79FPuR7DoUBeJhibrw6226SG/wikipedia_de_medicine_2018-09.zim",
+          "version": "0.0.1",
+          "description": "Wikipedia in DE language"
+        },
+        {
+          "content_id": "wikipedia.af",
+          "name": "Wikipedia af",
+          "download_path": "/ipfs/QmbijmMjGntvuAT57TGJf6dBDwac8S5BeBvABYeKYa7XH5",
+          "destination_path": "QmbijmMjGntvuAT57TGJf6dBDwac8S5BeBvABYeKYa7XH5/wikipedia_af_all_2017-03.zim",
+          "version": "0.0.1",
+          "description": "Wikipedia in AF language"
         }
       ]
     }
