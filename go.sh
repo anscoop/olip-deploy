@@ -7,7 +7,7 @@ ANSIBLE_LOGS="/var/log/ansible-pull.log"
 ANSIBLE_ETC="/etc/ansible/facts.d/"
 TAGS=""
 BRANCH="master"
-GIT_RELEASE_TAG="0.1"
+GIT_RELEASE_TAG="1.0"
 
 [ $EUID -eq 0 ] || {
     echo "Error: you have to be root to run this script." >&2
