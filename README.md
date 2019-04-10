@@ -85,3 +85,26 @@ Open inbound port :
 * `22` for SSH
 * `4001` for IPFS swarm
 * `5002` for OLIP API
+
+## Logs 
+
+Important webapp logs are 
+
+### API
+
+```
+$ balena-engine logs -f olip-api
+```
+
+### IPFS registry
+
+```
+$ balena-engine logs -f ipfs-registry
+```
+
+### For webapp, exemple
+
+```
+$ balena-engine logs -f kolibri.app.kolibri
+```
+
