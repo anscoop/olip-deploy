@@ -1,8 +1,6 @@
 [Unit]
 Description=IPFS daemon
-After=firewall
-Wants=network-online.target
-
+Requires=network-online.target
 
 [Service]
 Environment="IPFS_PATH={{ipfs_storage}}"
