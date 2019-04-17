@@ -1,5 +1,5 @@
 ipfs_storage: /root/.ipfs
-ipfs_version: 0.4.19
+ipfs_version: 0.4.20
 
 ipfs_schedule_ipns_publish: []
 ipfs_pin_content: [
@@ -19,4 +19,6 @@ ipfs_config:
   - { key: Mounts.FuseAllowOther, value: "true", json: true }
   - { key: Swarm.ConnMgr.HighWater, value: "20", json: true }
   - { key: Swarm.ConnMgr.LowWater, value: "10", json: true }
+  - { key: Swarm.ConnMgr.GracePeriod, value: "1m0s" }
+  - { key: Routing.Type, value: "dhtclient" }
   #- { key: Bootstrap, value: "\"[\\\"/ip4/51.15.137.212/tcp/4001/ipfs/QmcbT7oEDPPuzD2vGkQqkpj9F4eDtn2rT1YZJ8ypapURcn\\\"]\"", json: true }
