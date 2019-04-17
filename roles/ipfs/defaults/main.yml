@@ -1,5 +1,5 @@
 ipfs_storage: /root/.ipfs
-ipfs_version: 0.4.19
+ipfs_version: 0.4.20
 
 ipfs_schedule_ipns_publish: []
 ipfs_pin_content: [
