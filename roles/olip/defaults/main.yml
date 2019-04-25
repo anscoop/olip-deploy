@@ -2,14 +2,14 @@
 olip_storage: /opt/olip/
 
 # OLIP Dashboard
-olip_external_base_url: "olip.{{ domain_name }}"
+olip_external_base_url: "{{ domain_name }}"
 olip_internal_host_base_url: "http://127.0.0.1"
 olip_dashboard_repository: bibliosansfrontieres/olip-dashboard-i386
 olip_dashboard_version: latest
 olip_dashboard_port: 8082
 
 # OLIP API
-olip_api_base_url: "api.olip.{{ domain_name }}"
+olip_api_base_url: "api.{{ domain_name }}"
 olip_api_repository: bibliosansfrontieres/olip-api-i386
 olip_api_version: latest
 olip_api_port: 5002

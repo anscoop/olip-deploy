@@ -69,19 +69,19 @@ Default value is set to `latest`
 ### Update API with latest file descriptor version
 
 ```
-http://olip.api.my-platform-name.fr:5002/applications/?repository_update=true
+http://api.my-platform-name.fr:5002/applications/?repository_update=true
 ```
 
 ### Use the dashboard
 
 ```
-http://olip.my-platform-name.fr
+http://my-platform-name.fr
 ```
 
 ### API
 
 ```
-http://api.olip.my-platform-name.fr:5002
+http://api.my-platform-name.fr:5002
 ```
 
 ## Firewall
