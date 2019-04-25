@@ -17,7 +17,7 @@
         {
           "content_id": "stitching.fr",
           "name": "Stitching",
-          "download_path": "/ipfs/QmS8nyPD6QNtuMzfjiRkVuy28Fd6uCir2GXTWFCvyATCD2",
+          "download_path": "/ipfs/QmaPxiRik9VWWpJu2ZJ5NyCJmr5VX6tBRNC1uVcSKSxw3q",
           "destination_path": "stitching-fr",
           "version": "0.0.14",
           "description": "How to make DIY stitching",
@@ -64,24 +64,16 @@
         {
           "content_id": "wikipedia.it",
           "name": "Wikipedia it",
-          "download_path": "/ipfs/QmNw2FvHqKwX5KXKsJPfmuimUByEYJEGDnvnpAhYtVhYRy",
-          "destination_path": "QmNw2FvHqKwX5KXKsJPfmuimUByEYJEGDnvnpAhYtVhYRy/wiktionary_it_all_nopic_2018-07.zim",
+          "download_path": "/ipfs/QmPuphxX87nPrnUzjPwjdrsZUiStMuVh9JQ1SxC8H3SQLA",
+          "destination_path": "wiktionary_it_all_nopic_2018-07.zim",
           "version": "0.0.1",
           "description": "Wikipedia in IT language"
         },
         {
-          "content_id": "wikipedia.de",
-          "name": "Wikipedia de",
-          "download_path": "/ipfs/QmPVScMpahjVBqDfF1Fy4E79FPuR7DoUBeJhibrw6226SG",
-          "destination_path": "QmPVScMpahjVBqDfF1Fy4E79FPuR7DoUBeJhibrw6226SG/wikipedia_de_medicine_2018-09.zim",
-          "version": "0.0.1",
-          "description": "Wikipedia in DE language"
-        },
-        {
           "content_id": "wikipedia.af",
           "name": "Wikipedia af",
-          "download_path": "/ipfs/QmbijmMjGntvuAT57TGJf6dBDwac8S5BeBvABYeKYa7XH5",
-          "destination_path": "QmbijmMjGntvuAT57TGJf6dBDwac8S5BeBvABYeKYa7XH5/wikipedia_af_all_2017-03.zim",
+          "download_path": "/ipfs/Qmazpa6AgYzjLHhYzFG4UWPGCxztpfRuLT1vmXFP2L4cWG",
+          "destination_path": "wikipedia_af_all_nopic_2019-02.zim",
           "version": "0.0.1",
           "description": "Wikipedia in AF language"
         }
