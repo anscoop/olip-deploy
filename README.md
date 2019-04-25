@@ -39,7 +39,7 @@ This way IPFS will be faster at discovering content
 
 ```
 $ ipfs add descriptor.json
-added QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA descriptor.json
+added QmQbMTudjMohE527vBQvGAAWaC3wuM6rcnc3xqMnojRbM7 descriptor.json
 ```
 
 You can then pass this IPFS Hash to the command line
@@ -47,15 +47,22 @@ You can then pass this IPFS Hash to the command line
 ### With cURL
 
 ```
-curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh | bash -s -- --name my_platform_name --url my-platform-name.fr --descriptor /ipfs/QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA
+curl -sfL https://github.com/bibliosansfrontieres/olip-deploy/raw/master/go.sh | bash -s -- --name my_platform_name --url my-platform-name.fr --descriptor /ipfs/QmQbMTudjMohE527vBQvGAAWaC3wuM6rcnc3xqMnojRbM7
 ```
 
 ### With Ansible CLI
 
 ```
-ansible-playbook -i hosts -l my_server -u root main.yml --extra-vars "end_user_server_name=my_platform_name end_user_domain_name=my-platform-name.fr end_user_olip_file_descriptor=QmaqMmAiFMp2Ff9P7isuSxRjZE9ZS1YZh5NWX55AWbjDuA"
+ansible-playbook -i hosts -l my_server -u root main.yml --extra-vars "end_user_server_name=my_platform_name end_user_domain_name=my-platform-name.fr end_user_olip_file_descriptor=QmQbMTudjMohE527vBQvGAAWaC3wuM6rcnc3xqMnojRbM7"
 ```
 
+
+There is also an option to specify Docker image version, it can be `latest`, `dev` or `test`
+
+* `olip_dashboard_version=dev`
+* `olip_api_version=dev`
+
+Default value is set to `latest`
 
 ## Usage
 
@@ -86,9 +93,9 @@ Open inbound port :
 * `4001` for IPFS swarm
 * `5002` for OLIP API
 
-## Logs 
+## Logs
 
-Important webapp logs are 
+Important webapp logs are
 
 ### API
 
@@ -107,4 +114,3 @@ $ balena-engine logs -f ipfs-registry
 ```
 $ balena-engine logs -f kolibri.app.kolibri
 ```
-
